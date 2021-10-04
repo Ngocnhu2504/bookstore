@@ -29,11 +29,11 @@ export default function CartScreen(props) {
   return (
     <div className="row top">
       <div className="col-2">
-        <h1>Shopping Cart</h1>
+        <h1>Sản phẩm trong giỏ hàng</h1>
         {error && <MessageBox variant="danger">{error}</MessageBox>}
         {cartItems.length === 0 ? (
           <MessageBox>
-            Cart is empty. <Link to="/">Go Shopping</Link>
+            Giỏ hàng trống. <Link to="/">Tìm sản phẩm</Link>
           </MessageBox>
         ) : (
           <ul>
@@ -72,7 +72,7 @@ export default function CartScreen(props) {
                       type="button"
                       onClick={() => removeFromCartHandler(item.product)}
                     >
-                      Delete
+                      Xóa
                     </button>
                   </div>
                 </div>
@@ -86,7 +86,7 @@ export default function CartScreen(props) {
           <ul>
             <li>
               <h2>
-                Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)} items) : $
+                Thành tiền ({cartItems.reduce((a, c) => a + c.qty, 0)} mặt hàng) : $
                 {cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
               </h2>
             </li>
@@ -97,7 +97,7 @@ export default function CartScreen(props) {
                 className="primary block"
                 disabled={cartItems.length === 0}
               >
-                Proceed to Checkout
+                Đặt hàng
               </button>
             </li>
           </ul>

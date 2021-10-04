@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
-import socketIOClient from 'socket.io-client';
+import React, { useEffect, useRef, useState } from "react";
+import socketIOClient from "socket.io-client";
 
 const ENDPOINT =
-  window.location.host.indexOf('localhost') >= 0
-    ? 'http://127.0.0.1:5000'
+  window.location.host.indexOf("localhost") >= 0
+    ? "http://127.0.0.1:5000"
     : window.location.host;
 
 export default function ChatBox(props) {
@@ -11,9 +11,9 @@ export default function ChatBox(props) {
   const [socket, setSocket] = useState(null);
   const uiMessagesRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [messageBody, setMessageBody] = useState('');
+  const [messageBody, setMessageBody] = useState("");
   const [messages, setMessages] = useState([
-    { name: 'Admin', body: 'Hello there, Please ask your question.' },
+    { name: "Admin", body: "Xin chào!!, chúng tôi có thể giúp gì cho bạn?." },
   ]);
 
   useEffect(() => {
@@ -21,16 +21,16 @@ export default function ChatBox(props) {
       uiMessagesRef.current.scrollBy({
         top: uiMessagesRef.current.clientHeight,
         left: 0,
-        behavior: 'smooth',
+        behavior: "smooth",
       });
     }
     if (socket) {
-      socket.emit('onLogin', {
+      socket.emit("onLogin", {
         _id: userInfo._id,
         name: userInfo.name,
         isAdmin: userInfo.isAdmin,
       });
-      socket.on('message', (data) => {
+      socket.on("message", (data) => {
         setMessages([...messages, { body: data.body, name: data.name }]);
       });
     }
@@ -45,12 +45,12 @@ export default function ChatBox(props) {
   const submitHandler = (e) => {
     e.preventDefault();
     if (!messageBody.trim()) {
-      alert('Error. Please type message.');
+      alert("Error. Please type message.");
     } else {
       setMessages([...messages, { body: messageBody, name: userInfo.name }]);
-      setMessageBody('');
+      setMessageBody("");
       setTimeout(() => {
-        socket.emit('onMessage', {
+        socket.emit("onMessage", {
           body: messageBody,
           name: userInfo.name,
           isAdmin: userInfo.isAdmin,
@@ -71,7 +71,7 @@ export default function ChatBox(props) {
       ) : (
         <div className="card card-body">
           <div className="row">
-            <strong>Support </strong>
+            <strong>Chat với admin </strong>
             <button type="button" onClick={closeHandler}>
               <i className="fa fa-close" />
             </button>
@@ -89,9 +89,9 @@ export default function ChatBox(props) {
                 value={messageBody}
                 onChange={(e) => setMessageBody(e.target.value)}
                 type="text"
-                placeholder="type message"
+                placeholder="Nhập tin nhắn"
               />
-              <button type="submit">Send</button>
+              <button type="submit">Gửi</button>
             </form>
           </div>
         </div>

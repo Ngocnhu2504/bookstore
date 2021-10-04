@@ -1,16 +1,16 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { detailsUser, updateUser } from '../actions/userActions';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
-import { USER_UPDATE_RESET } from '../constants/userConstants';
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { detailsUser, updateUser } from "../actions/userActions";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
+import { USER_UPDATE_RESET } from "../constants/userConstants";
 
 export default function UserEditScreen(props) {
   const userId = props.match.params.id;
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [isSeller, setIsSeller] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
@@ -28,7 +28,7 @@ export default function UserEditScreen(props) {
   useEffect(() => {
     if (successUpdate) {
       dispatch({ type: USER_UPDATE_RESET });
-      props.history.push('/userlist');
+      props.history.push("/userlist");
     }
     if (!user) {
       dispatch(detailsUser(userId));
@@ -49,7 +49,7 @@ export default function UserEditScreen(props) {
     <div>
       <form className="form" onSubmit={submitHandler}>
         <div>
-          <h1>Edit User {name}</h1>
+          <h1>Cập nhật thành công {name}</h1>
           {loadingUpdate && <LoadingBox></LoadingBox>}
           {errorUpdate && (
             <MessageBox variant="danger">{errorUpdate}</MessageBox>
@@ -62,11 +62,11 @@ export default function UserEditScreen(props) {
         ) : (
           <>
             <div>
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name">Tên</label>
               <input
                 id="name"
                 type="text"
-                placeholder="Enter name"
+                placeholder="Mời bạn nhập tên"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               ></input>
@@ -76,13 +76,13 @@ export default function UserEditScreen(props) {
               <input
                 id="email"
                 type="email"
-                placeholder="Enter email"
+                placeholder="Mời bạn nhập email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               ></input>
             </div>
             <div>
-              <label htmlFor="isSeller">Is Seller</label>
+              <label htmlFor="isSeller">Là người bán</label>
               <input
                 id="isSeller"
                 type="checkbox"
@@ -91,7 +91,7 @@ export default function UserEditScreen(props) {
               ></input>
             </div>
             <div>
-              <label htmlFor="isAdmin">Is Admin</label>
+              <label htmlFor="isAdmin">Là quản trị viên</label>
               <input
                 id="isAdmin"
                 type="checkbox"
@@ -101,7 +101,7 @@ export default function UserEditScreen(props) {
             </div>
             <div>
               <button type="submit" className="primary">
-                Update
+                Cập nhật
               </button>
             </div>
           </>

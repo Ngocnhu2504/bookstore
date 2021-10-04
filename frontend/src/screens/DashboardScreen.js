@@ -15,7 +15,7 @@ export default function DashboardScreen() {
   return (
     <div>
       <div className="row">
-        <h1>Dashboard</h1>
+        <h1>Tổng quan</h1>
       </div>
       {loading ? (
         <LoadingBox />
@@ -27,7 +27,7 @@ export default function DashboardScreen() {
             <li>
               <div className="summary-title color1">
                 <span>
-                  <i className="fa fa-users" /> Users
+                  <i className="fa fa-users" /> Khách hàng
                 </span>
               </div>
               <div className="summary-body">{summary.users[0].numUsers}</div>
@@ -35,7 +35,7 @@ export default function DashboardScreen() {
             <li>
               <div className="summary-title color2">
                 <span>
-                  <i className="fa fa-shopping-cart" /> Orders
+                  <i className="fa fa-shopping-cart" /> Đơn hàng
                 </span>
               </div>
               <div className="summary-body">
@@ -45,7 +45,7 @@ export default function DashboardScreen() {
             <li>
               <div className="summary-title color3">
                 <span>
-                  <i className="fa fa-money" /> Sales
+                  <i className="fa fa-money" /> Tổng tiền
                 </span>
               </div>
               <div className="summary-body">
@@ -58,9 +58,9 @@ export default function DashboardScreen() {
           </ul>
           <div>
             <div>
-              <h2>Sales</h2>
+              <h2>Hoạt động bán hàng</h2>
               {summary.dailyOrders.length === 0 ? (
-                <MessageBox>No Sale</MessageBox>
+                <MessageBox>Chưa có hoạt động</MessageBox>
               ) : (
                 <Chart
                   width="100%"
@@ -76,9 +76,9 @@ export default function DashboardScreen() {
             </div>
           </div>
           <div>
-            <h2>Categories</h2>
+            <h2>Danh mục sản phẩm</h2>
             {summary.productCategories.length === 0 ? (
-              <MessageBox>No Category</MessageBox>
+              <MessageBox>Chưa có danh mục</MessageBox>
             ) : (
               <Chart
                 width="100%"

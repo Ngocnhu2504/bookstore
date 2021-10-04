@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { detailsUser, updateUserProfile } from '../actions/userActions';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
-import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { detailsUser, updateUserProfile } from "../actions/userActions";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
+import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
 
 export default function ProfileScreen() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [sellerName, setSellerName] = useState('');
-  const [sellerLogo, setSellerLogo] = useState('');
-  const [sellerDescription, setSellerDescription] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [sellerName, setSellerName] = useState("");
+  const [sellerLogo, setSellerLogo] = useState("");
+  const [sellerDescription, setSellerDescription] = useState("");
 
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
@@ -43,7 +43,7 @@ export default function ProfileScreen() {
     e.preventDefault();
     // dispatch update profile
     if (password !== confirmPassword) {
-      alert('Password and Confirm Password Are Not Matched');
+      alert("Password and Confirm Password Are Not Matched");
     } else {
       dispatch(
         updateUserProfile({
@@ -62,7 +62,7 @@ export default function ProfileScreen() {
     <div>
       <form className="form" onSubmit={submitHandler}>
         <div>
-          <h1>User Profile</h1>
+          <h1>Thông tin tài khoản</h1>
         </div>
         {loading ? (
           <LoadingBox></LoadingBox>
@@ -76,15 +76,15 @@ export default function ProfileScreen() {
             )}
             {successUpdate && (
               <MessageBox variant="success">
-                Profile Updated Successfully
+                Cập nhật thông tin thành công
               </MessageBox>
             )}
             <div>
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name">Tên</label>
               <input
                 id="name"
                 type="text"
-                placeholder="Enter name"
+                placeholder="Mời bạn nhập tên"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               ></input>
@@ -94,58 +94,58 @@ export default function ProfileScreen() {
               <input
                 id="email"
                 type="email"
-                placeholder="Enter email"
+                placeholder="Mời bạn nhập email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               ></input>
             </div>
             <div>
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">Mật khẩu</label>
               <input
                 id="password"
                 type="password"
-                placeholder="Enter password"
+                placeholder="Mời bạn nhập mật khẩu"
                 onChange={(e) => setPassword(e.target.value)}
               ></input>
             </div>
             <div>
-              <label htmlFor="confirmPassword">confirm Password</label>
+              <label htmlFor="confirmPassword">Xác nhận mật khẩu</label>
               <input
                 id="confirmPassword"
                 type="password"
-                placeholder="Enter confirm password"
+                placeholder="Vui lòng xác nhận mật khẩu"
                 onChange={(e) => setConfirmPassword(e.target.value)}
               ></input>
             </div>
             {user.isSeller && (
               <>
-                <h2>Seller</h2>
+                <h2>Người bán</h2>
                 <div>
-                  <label htmlFor="sellerName">Seller Name</label>
+                  <label htmlFor="sellerName">Tên người bán</label>
                   <input
                     id="sellerName"
                     type="text"
-                    placeholder="Enter Seller Name"
+                    placeholder="Mời bạn nhập tên"
                     value={sellerName}
                     onChange={(e) => setSellerName(e.target.value)}
                   ></input>
                 </div>
                 <div>
-                  <label htmlFor="sellerLogo">Seller Logo</label>
+                  <label htmlFor="sellerLogo">Ảnh đại diện</label>
                   <input
                     id="sellerLogo"
                     type="text"
-                    placeholder="Enter Seller Logo"
+                    placeholder="Mời bạn nhập một ảnh"
                     value={sellerLogo}
                     onChange={(e) => setSellerLogo(e.target.value)}
                   ></input>
                 </div>
                 <div>
-                  <label htmlFor="sellerDescription">Seller Description</label>
+                  <label htmlFor="sellerDescription">Mô tả</label>
                   <input
                     id="sellerDescription"
                     type="text"
-                    placeholder="Enter Seller Description"
+                    placeholder="Mời bạn nhập mô tả"
                     value={sellerDescription}
                     onChange={(e) => setSellerDescription(e.target.value)}
                   ></input>
@@ -155,7 +155,7 @@ export default function ProfileScreen() {
             <div>
               <label />
               <button className="primary" type="submit">
-                Update
+                Cập nhật
               </button>
             </div>
           </>

@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteUser, listUsers } from '../actions/userActions';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
-import { USER_DETAILS_RESET } from '../constants/userConstants';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteUser, listUsers } from "../actions/userActions";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
+import { USER_DETAILS_RESET } from "../constants/userConstants";
 
 export default function UserListScreen(props) {
   const userList = useSelector((state) => state.userList);
@@ -24,17 +24,17 @@ export default function UserListScreen(props) {
     });
   }, [dispatch, successDelete]);
   const deleteHandler = (user) => {
-    if (window.confirm('Are you sure?')) {
+    if (window.confirm("Are you sure?")) {
       dispatch(deleteUser(user._id));
     }
   };
   return (
     <div>
-      <h1>Users</h1>
+      <h1>Tài khoản người dùng</h1>
       {loadingDelete && <LoadingBox></LoadingBox>}
       {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
       {successDelete && (
-        <MessageBox variant="success">User Deleted Successfully</MessageBox>
+        <MessageBox variant="success">Xóa người dùng thành công</MessageBox>
       )}
       {loading ? (
         <LoadingBox></LoadingBox>
@@ -44,12 +44,12 @@ export default function UserListScreen(props) {
         <table className="table">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>NAME</th>
+              <th>Mã tài khoản</th>
+              <th>Tên người dùng</th>
               <th>EMAIL</th>
-              <th>IS SELLER</th>
-              <th>IS ADMIN</th>
-              <th>ACTIONS</th>
+              <th>Là người bán</th>
+              <th>Là quản trị viên</th>
+              <th>Thao tác</th>
             </tr>
           </thead>
           <tbody>
@@ -58,22 +58,22 @@ export default function UserListScreen(props) {
                 <td>{user._id}</td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td>{user.isSeller ? 'YES' : ' NO'}</td>
-                <td>{user.isAdmin ? 'YES' : 'NO'}</td>
+                <td>{user.isSeller ? "YES" : " NO"}</td>
+                <td>{user.isAdmin ? "YES" : "NO"}</td>
                 <td>
                   <button
                     type="button"
                     className="small"
                     onClick={() => props.history.push(`/user/${user._id}/edit`)}
                   >
-                    Edit
+                    Cập nhật
                   </button>
                   <button
                     type="button"
                     className="small"
                     onClick={() => deleteHandler(user)}
                   >
-                    Delete
+                    Xóa
                   </button>
                 </td>
               </tr>

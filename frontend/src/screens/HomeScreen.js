@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import { Carousel } from 'react-responsive-carousel';
-import Product from '../components/Product';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
-import { useDispatch, useSelector } from 'react-redux';
-import { listProducts } from '../actions/productActions';
-import { listTopSellers } from '../actions/userActions';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from "react";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
+import Product from "../components/Product";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
+import { useDispatch, useSelector } from "react-redux";
+import { listProducts } from "../actions/productActions";
+import { listTopSellers } from "../actions/userActions";
+import { Link } from "react-router-dom";
 
 export default function HomeScreen() {
   const dispatch = useDispatch();
@@ -27,14 +27,14 @@ export default function HomeScreen() {
   }, [dispatch]);
   return (
     <div>
-      <h2>Top Sellers</h2>
+      {/* <h2>Mặt hàng bán chạy</h2>
       {loadingSellers ? (
         <LoadingBox></LoadingBox>
       ) : errorSellers ? (
         <MessageBox variant="danger">{errorSellers}</MessageBox>
       ) : (
         <>
-          {sellers.length === 0 && <MessageBox>No Seller Found</MessageBox>}
+          {sellers.length === 0 && <MessageBox>Không tìm thấy sản phẩm nào</MessageBox>}
           <Carousel showArrows autoPlay showThumbs={false}>
             {sellers.map((seller) => (
               <div key={seller._id}>
@@ -46,15 +46,34 @@ export default function HomeScreen() {
             ))}
           </Carousel>
         </>
-      )}
-      <h2>Featured Products</h2>
+      )} */}
+      <h2>Sản phẩm bán chạy</h2>
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <>
-          {products.length === 0 && <MessageBox>No Product Found</MessageBox>}
+          {products.length === 0 && (
+            <MessageBox>Không tìm thấy sản phẩm</MessageBox>
+          )}
+          <div className="row center">
+            {products.map((product) => (
+              <Product key={product._id} product={product}></Product>
+            ))}
+          </div>
+        </>
+      )}
+      <h2>Sản phẩm nổi bật</h2>
+      {loading ? (
+        <LoadingBox></LoadingBox>
+      ) : error ? (
+        <MessageBox variant="danger">{error}</MessageBox>
+      ) : (
+        <>
+          {products.length === 0 && (
+            <MessageBox>Không tìm thấy sản phẩm</MessageBox>
+          )}
           <div className="row center">
             {products.map((product) => (
               <Product key={product._id} product={product}></Product>
